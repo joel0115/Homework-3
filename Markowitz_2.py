@@ -70,11 +70,17 @@ class MyPortfolio:
         self.portfolio_weights = pd.DataFrame(
             index=self.price.index, columns=self.price.columns
         )
+        df_returns = self.price.pct_change().fillna(0)
 
         """
         TODO: Complete Task 4 Below
         """
-
+        for i in range(self.lookback + 1, len(df)):
+            R_n = df_returns.copy()[assets].iloc[i]
+            max_idx = R_n.argmax()
+            weights = [0.0]*(len(assets))
+            weights[max_idx] = 1.0
+            self.portfolio_weights.loc[df.index[i],assets] = weights
         """
         TODO: Complete Task 4 Above
         """
